@@ -1,21 +1,27 @@
 package com.crm.qa.testcases;
 
+import java.net.MalformedURLException;
+
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.crm.qa.base.TestBase;
-import com.crm.qa.pages.ContactsPage;
 import com.crm.qa.pages.HomePage;
-import com.crm.qa.pages.LoginPage;
+import com.crm.qa.pages.DashboardPage;
 import com.crm.qa.util.TestUtil;
+import com.google.gson.annotations.SerializedName;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 
 public class HomePageTest extends TestBase {
-	LoginPage loginPage;
+	DashboardPage dashboardPage;
 	HomePage homePage;
-	TestUtil testUtil;
-	ContactsPage contactsPage;
 
 	public HomePageTest() {
 		super();
@@ -27,40 +33,46 @@ public class HomePageTest extends TestBase {
 	//after each test case -- close the browser
 	
 	@BeforeMethod
-	public void setUp() {
+	public void setUp() throws MalformedURLException {
 		initialization();
-		testUtil = new TestUtil();
-		contactsPage = new ContactsPage();
-		loginPage = new LoginPage();
-		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		dashboardPage = new DashboardPage();
+		homePage = new HomePage();
+		
 	}
 	
 	
-	@Test(priority=1)
-	public void verifyHomePageTitleTest(){
-		String homePageTitle = homePage.verifyHomePageTitle();
-		Assert.assertEquals(homePageTitle, "CRMPRO","Home page title not matched");
-	}
-	
-	@Test(priority=2)
-	public void verifyUserNameTest(){
-		testUtil.switchToFrame();
-		Assert.assertTrue(homePage.verifyCorrectUserName());
-	}
-	
-	@Test(priority=3)
-	public void verifyContactsLinkTest(){
-		testUtil.switchToFrame();
-		contactsPage = homePage.clickOnContactsLink();
+	@Test(priority=1,description = "Verify presence of Women tab")
+	@Severity(SeverityLevel.NORMAL)
+	@Description("Test case description : Verify presence of Women tab")
+	@Story("Story Name: To check pressence of Women tab")
+	public void verifyWomenTabTest(){
+		boolean exp = homePage.verifyWomentab();
+		Assert.assertTrue(exp);
 	}
 	
 	
+	@Test(priority=2,description = "Verify presence of Dress tab")
+	@Severity(SeverityLevel.CRITICAL)
+	@Description("Test case description : Verify presence of Dress tab")
+	@Story("Story Name: To check pressence of Dress tab")
+	public void verifyDressTabTest(){
+		boolean exp = homePage.verifydresstab();
+		Assert.assertTrue(exp);
+	}
+	
+	@Test(priority=3,description = "Verify presence of Tshirt tab")
+	@Severity(SeverityLevel.MINOR)
+	@Description("Test case description : Verify presence of TShirt tab")
+	@Story("Story Name: To check pressence of TShirt tab")
+	public void verifyTshirtTabTest(){
+		boolean exp = homePage.verifyTshirttab();
+		Assert.assertTrue(exp);
+	}
 	
 	@AfterMethod
-	public void tearDown(){
+	public void endMethod()
+	{
 		driver.quit();
 	}
-	
-	
 
 }
