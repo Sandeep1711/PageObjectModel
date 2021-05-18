@@ -61,11 +61,11 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
-<dependency>
-    <groupId>com.relevantcodes</groupId>
-    <artifactId>extentreports</artifactId>
-    <version>2.41.2</version>
-</dependency>
+		<dependency>
+  			<groupId>com.relevantcodes</groupId>
+   			 <artifactId>extentreports</artifactId>
+   			 <version>2.41.2</version>
+		</dependency>
 
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/openxml4j -->
@@ -99,13 +99,14 @@
 			<!-- Compiler plugin configures the java version to be usedfor compiling 
 				the code -->
 
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
+			 <plugin>
+           			 <groupId>org.apache.maven.plugins</groupId>
+            			<artifactId>maven-compiler-plugin</artifactId>
+            			<configuration>
+               				 <source>1.8</source>
+               				 <target>1.8</target>
+            			</configuration>
+       			 </plugin>
 
 			<!-- Following plugin executes the testng tests -->
 			<plugin>
