@@ -41,7 +41,7 @@ public class TestBase {
 	}
 	
 
-	public void initialization() throws MalformedURLException {
+	public void initialization() {
 		//String browserName = prop.getProperty("browser");
 		
 		String browserName = System.getProperty("xyz");
