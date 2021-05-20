@@ -33,7 +33,7 @@ public class HomePageTest extends TestBase {
 	//after each test case -- close the browser
 	
 	@BeforeMethod
-	public void setUp() throws MalformedURLException {
+	public void setUp() {
 		initialization();
 		dashboardPage = new DashboardPage();
 		homePage = new HomePage();
